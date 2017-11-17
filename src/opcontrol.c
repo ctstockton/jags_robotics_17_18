@@ -39,7 +39,11 @@ void operatorControl() {
 	  motorSet(1, power - turn); // set right wheels
 		delay(20);
 
+<<<<<<< HEAD
 		//Corey Test
+=======
+		//update test -Jay
+>>>>>>> 389c77b8856253b809a0d7207d23d5ca0ff65995
 	}
 
 }
