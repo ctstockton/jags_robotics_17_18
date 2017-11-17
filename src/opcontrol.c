@@ -39,7 +39,7 @@ void operatorControl() {
 	  motorSet(1, power - turn); // set right wheels
 		delay(20);
 
-		//update test
+		//update test -Jay
 	}
 
 }
