@@ -40,7 +40,6 @@ void operatorControl() {
 		delay(20);
 
 		//update test
-		//Update test 2
 	}
 
 }
