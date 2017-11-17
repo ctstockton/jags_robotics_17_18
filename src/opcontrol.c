@@ -37,7 +37,7 @@ void operatorControl() {
 	  turn  = joystickGetAnalog(1, 1); // horizontal axis on right joystick
 	  motorSet(10, -power - turn); // set left wheels
 	  motorSet(1, power - turn); // set right wheels
-		delay(40);
+		delay(20);
 	}
 
 }
