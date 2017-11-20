@@ -27,5 +27,8 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+<<<<<<< HEAD
   //Corey Tests
+=======
+>>>>>>> 58e6a00dc3d5ba290842ac4a7b7b95bd1d8cac08
 }
