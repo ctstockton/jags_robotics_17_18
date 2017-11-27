@@ -55,6 +55,31 @@ extern "C" {
 // A function prototype looks exactly like its declaration, but with a semicolon instead of
 // actual code. If a function does not match a prototype, compile errors will occur.
 
+//Robot definition.
+#define JAWS 1
+#define JAZY 2
+
+/*--------------------------------------------------------------------------------------------------*/
+//Robot receiving compiled code. This should be change depending upon which robot is being programmed.
+//#define ROBOT "JAWS or JAZY"
+/*--------------------------------------------------------------------------------------------------*/
+
+//Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
+//Analog ports
+#define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
+#define RIGHT_LIFT_POTENTIOMETER 2
+#define GYROSCOPE 3
+
+//Digital ports
+#define LEFT_DRIVE_QUAD_TOP 1
+#define LEFT_DRIVE_QUAD_BOT 2
+#define RIGHT_DRIVE_QUAD_TOP 3
+#define RIGHT_DRIVE_QUAD_BOT 4
+
+//Reserve names of encoders for initialization.
+Gyro gyro;
+Encoder leftDriveEncoder, rightDriveEncoder;
+  
 // Prototypes for initialization, operator control and autonomous
 
 /**
@@ -72,6 +97,7 @@ extern "C" {
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous();
+
 /**
  * Runs pre-initialization code. This function will be started in kernel mode one time while the
  * VEX Cortex is starting up. As the scheduler is still paused, most API functions will fail.
@@ -81,6 +107,7 @@ void autonomous();
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
 void initializeIO();
+
 /**
  * Runs user initialization code. This function will be started in its own task with the default
  * priority and stack size once when the robot is starting up. It is possible that the VEXnet
@@ -95,6 +122,7 @@ void initializeIO();
  * can be implemented in this task if desired.
  */
 void initialize();
+
 /**
  * Runs the user operator control code. This function will be started in its own task with the
  * default priority and stack size whenever the robot is enabled via the Field Management System
