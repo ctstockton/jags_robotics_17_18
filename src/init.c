@@ -37,4 +37,8 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+  //Initialize sensors
+  gyro = gyroInit(GYROSCOPE, 0);
+  leftDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, is_reversed);//change is_reversed accourdingly
+  rightDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, is_reversed);//change is_reversed accourdingly
 }
