@@ -44,6 +44,8 @@
 #define MAIN_H_
 
 #include <API.h>
+//added includes
+#include "drive.h"
 
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
