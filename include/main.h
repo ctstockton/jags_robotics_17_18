@@ -80,6 +80,14 @@ extern "C" {
 Gyro gyro;
 Encoder leftDriveEncoder, rightDriveEncoder;
   
+//Motor port init.
+  /*
+#define LEFT_FRONT
+#define LEFT_BACK
+#define RIGHT_FRONT
+#define RIGHT_BACK
+  */
+  
 // Prototypes for initialization, operator control and autonomous
 
 /**
