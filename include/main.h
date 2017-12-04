@@ -1,6 +1,6 @@
 /** @file main.h
  * @brief Header file for global functions
- * 
+ *
  * Any experienced C or C++ programmer knows the importance of header files. For those who
  * do not, a header file allows multiple files to reference functions in other files without
  * necessarily having to see the code (and therefore causing a multiple definition). To make
@@ -46,6 +46,8 @@
 #include <API.h>
 //added includes
 #include "drive.h"
+#include "lift.h"
+#include "autonomous.h"
 
 // Allow usage of this file in C++ programs
 #ifdef __cplusplus
@@ -59,13 +61,16 @@ extern "C" {
 
 //Robot definition.
 #define JAWS 1
-#define JAZY 2
+#define JAGS 2
 
 /*--------------------------------------------------------------------------------------------------*/
 //Robot receiving compiled code. This should be change depending upon which robot is being programmed.
 //#define ROBOT "JAWS or JAZY"
+#define ROBOT JAWS //<<---------
 /*--------------------------------------------------------------------------------------------------*/
 
+//This is the sensor and motor port setup for JAWS
+#if(ROBOT == JAWS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
 //Analog ports
 #define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
@@ -81,7 +86,27 @@ extern "C" {
 //Reserve names of encoders for initialization.
 Gyro gyro;
 Encoder leftDriveEncoder, rightDriveEncoder;
-  
+#endif
+
+//This is the sensor and motor port setup for JAGS
+#if(ROBOT == JAGS)
+//Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
+//Analog ports
+#define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
+#define RIGHT_LIFT_POTENTIOMETER 2
+#define GYROSCOPE 3
+
+//Digital ports
+#define LEFT_DRIVE_QUAD_TOP 1
+#define LEFT_DRIVE_QUAD_BOT 2
+#define RIGHT_DRIVE_QUAD_TOP 3
+#define RIGHT_DRIVE_QUAD_BOT 4
+
+//Reserve names of encoders for initialization.
+Gyro gyro;
+Encoder leftDriveEncoder, rightDriveEncoder;
+#endif
+
 // Prototypes for initialization, operator control and autonomous
 
 /**
