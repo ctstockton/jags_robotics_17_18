@@ -11,4 +11,4 @@ void setLift(int lift);
 void stopLift();
 
 
-#endif _LIFT_H_ //end declaration if
+#endif //_LIFT_H_ end declaration if
