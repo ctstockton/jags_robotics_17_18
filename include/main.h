@@ -65,7 +65,7 @@ extern "C" {
 
 /*--------------------------------------------------------------------------------------------------*/
 //Robot receiving compiled code. This should be change depending upon which robot is being programmed.
-//#define ROBOT "JAWS or JAZY"
+//#define ROBOT "JAWS or JAGS"
 #define ROBOT JAWS //<<---------
 /*--------------------------------------------------------------------------------------------------*/
 
