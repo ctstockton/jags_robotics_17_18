@@ -83,6 +83,22 @@ extern "C" {
 #define RIGHT_DRIVE_QUAD_TOP 3
 #define RIGHT_DRIVE_QUAD_BOT 4
 
+//Define motor port
+#define LEFT_FRONT_MOTOR
+#define LEFT_BACK_MOTOR
+#define RIGHT_FRONT_MOTOR
+#define RIGHT_BACK_MOTOR
+#define LEFT_LIFT_MOTOR_1
+#define LEFT_LIFT_MOTOR_2
+#define RIGHT_LIFT_MOTOR_1
+#define RIGHT_LIFT_MOTOR_2
+#define LEFT_INTAKE_MOTOR
+#define RIGHT_INTAKE_MOTOR
+#define LEFT_MOBILE_MOTOR
+#define RIGHT_MOBILE_MOTOR
+#define LEFT_SHIFT_MOTOR
+#define RIGHT_SHIFT_MOTOR
+
 //Reserve names of encoders for initialization.
 Gyro gyro;
 Encoder leftDriveEncoder, rightDriveEncoder;
@@ -101,6 +117,22 @@ Encoder leftDriveEncoder, rightDriveEncoder;
 #define LEFT_DRIVE_QUAD_BOT 2
 #define RIGHT_DRIVE_QUAD_TOP 3
 #define RIGHT_DRIVE_QUAD_BOT 4
+
+//Define motor port
+#define LEFT_FRONT_MOTOR
+#define LEFT_BACK_MOTOR
+#define RIGHT_FRONT_MOTOR
+#define RIGHT_BACK_MOTOR
+#define LEFT_LIFT_MOTOR_1
+#define LEFT_LIFT_MOTOR_2
+#define RIGHT_LIFT_MOTOR_1
+#define RIGHT_LIFT_MOTOR_2
+#define LEFT_INTAKE_MOTOR
+#define RIGHT_INTAKE_MOTOR
+#define LEFT_MOBILE_MOTOR
+#define RIGHT_MOBILE_MOTOR
+#define LEFT_SHIFT_MOTOR
+#define RIGHT_SHIFT_MOTOR
 
 //Reserve names of encoders for initialization.
 Gyro gyro;
