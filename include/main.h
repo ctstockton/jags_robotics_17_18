@@ -74,7 +74,7 @@ extern "C" {
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
 //Analog ports
 #define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
-#define RIGHT_LIFT_POTENTIOMETER 2
+#define RIGHT_LIFT_POTENTIOMETER 2 //range of 0 - 4095
 #define GYROSCOPE 3
 
 //Digital ports
@@ -84,32 +84,29 @@ extern "C" {
 #define RIGHT_DRIVE_QUAD_BOT 4
 
 //Define motor port
-#define LEFT_FRONT_MOTOR
-#define LEFT_BACK_MOTOR
-#define RIGHT_FRONT_MOTOR
-#define RIGHT_BACK_MOTOR
-#define LEFT_LIFT_MOTOR_1
-#define LEFT_LIFT_MOTOR_2
-#define RIGHT_LIFT_MOTOR_1
-#define RIGHT_LIFT_MOTOR_2
-#define LEFT_INTAKE_MOTOR
-#define RIGHT_INTAKE_MOTOR
-#define LEFT_MOBILE_MOTOR
-#define RIGHT_MOBILE_MOTOR
-#define LEFT_SHIFT_MOTOR
-#define RIGHT_SHIFT_MOTOR
+#define LEFT_FRONT_MOTOR 7
+#define LEFT_BACK_MOTOR 3
+#define RIGHT_FRONT_MOTOR 8
+#define RIGHT_BACK_MOTOR 2
+#define LEFT_LIFT_MOTOR 4
+#define RIGHT_LIFT_MOTOR 9
+#define INTAKE_MOTOR 1
+#define LEFT_MOBILE_MOTOR 6
+#define RIGHT_MOBILE_MOTOR 5
+#define INTAKE_SHIFT_MOTOR 10
 
 //Reserve names of encoders for initialization.
 Gyro gyro;
 Encoder leftDriveEncoder, rightDriveEncoder;
-#endif
+#endif //end of JAWS port setup
+
 
 //This is the sensor and motor port setup for JAGS
 #if(ROBOT == JAGS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
 //Analog ports
 #define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
-#define RIGHT_LIFT_POTENTIOMETER 2
+#define RIGHT_LIFT_POTENTIOMETER 2 //range of 0 - 4095
 #define GYROSCOPE 3
 
 //Digital ports
