@@ -136,6 +136,32 @@ Gyro gyro;
 Encoder leftDriveEncoder, rightDriveEncoder;
 #endif
 
+
+//Presets for lift, intake shift, and mobile goal for JAWS
+#if(ROBOT == JAWS)
+//Lift presets
+#define BOTTOM_READY
+#define BOTTOM_GRAB
+#define LOAD_DOCK_READY
+#define LOAD_DOCK_GRAB
+#define MG_READY
+#define MG_SET
+
+//Lift shift presets
+#define SHIFT_INTAKE
+#define SHIFT_MG_OUTTAKE
+
+//Mobile Goal presets
+#define MG_INTAKE
+#define MG_OUTTAKE
+
+#endif
+
+//Presets for lift, intake shift, and mobile goal for JAGS
+#if(ROBOT == JAGS)
+
+#endif
+
 // Prototypes for initialization, operator control and autonomous
 
 /**
