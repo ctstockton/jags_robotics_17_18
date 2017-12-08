@@ -4,10 +4,10 @@
 //List of all function to be declared
 
 //beginner list
-void setLiftForTime(int lift, int time);
+void setLiftForTime(int power, int time);
 
 //normal list
-void setLift(int lift);
+void setLift(int power);
 void stopLift();
 
 
