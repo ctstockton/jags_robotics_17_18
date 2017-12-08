@@ -43,6 +43,6 @@ void initialize() {
 
   //Initialize sensors
   gyro = gyroInit(GYROSCOPE, 0);
-  leftDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, is_reversed);//change is_reversed accourdingly
-  rightDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, is_reversed);//change is_reversed accourdingly
+  leftDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, false);//change reversed accourdingly
+  rightDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, true);//change reversed accourdingly
 }
