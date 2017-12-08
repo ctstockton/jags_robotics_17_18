@@ -37,6 +37,10 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+  //Initialize LCD
+  lcdInit(uart1);
+  lcdClear(uart1);
+
   //Initialize sensors
   gyro = gyroInit(GYROSCOPE, 0);
   leftDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, is_reversed);//change is_reversed accourdingly
