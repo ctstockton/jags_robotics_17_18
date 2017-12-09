@@ -37,6 +37,12 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+  //set name of robot
+  if(ROBOT == JAWS)
+    setTeamName("JAWS");
+  else if(ROBOT == JAGS)
+    setTeamName("JAGS");
+
   //Initialize LCD
   lcdInit(uart1);
   lcdClear(uart1);
