@@ -44,8 +44,11 @@ void initialize() {
     setTeamName("JAGS");
 
   //Initialize LCD
-  lcdInit(uart1);
-  lcdClear(uart1);
+  if(ROBOT == JAWS)
+  {
+    lcdInit(uart1);
+    lcdClear(uart1);
+  }
 
   //Initialize sensors
   gyro = gyroInit(GYROSCOPE, 0);
