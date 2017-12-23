@@ -27,4 +27,10 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+  //stop error check
+  //too late to fix errors so why bug with notifications
+  taskDelete(_errorCheck);
+  taskDelete(_lcdBacklightFlash);
+  lcdSetBacklight(uart1, false);
+  
 }

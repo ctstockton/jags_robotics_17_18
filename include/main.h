@@ -48,6 +48,7 @@
 #include "drive.h"
 #include "lift.h"
 #include "autonomous.h"
+#include "error.h"
 #include "lcd.h"
 
 // Allow usage of this file in C++ programs
