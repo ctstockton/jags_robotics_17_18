@@ -31,13 +31,26 @@
  */
 void operatorControl() {
 	int power;
+	int strafe;
 	int turn;
 	while (true) {
-		power = joystickGetAnalog(1, 2); // vertical axis on right joystick
-		turn  = joystickGetAnalog(1, 1); // horizontal axis on right joystick
-		motorSet(10, -power - turn); // set left wheels
-		motorSet(1, power - turn); // set right wheels
-		delay(40);
+		//getting joysticks
+		power = joystickGetAnalog(1, 3); // vertical axis on right joystick
+		strafe  = joystickGetAnalog(1, 4); // horizontal axis on right joystick
+		turn = joystickGetAnalog(1, 1);
+
+		if(abs(power)>15 || abs(strafe)>15 || abs(turn)>15)//to prevent creeping
+		{
+			motorSet(LEFT_FRONT_MOTOR, power+strafe+turn);
+			motorSet(LEFT_BACK_MOTOR, power-strafe+turn);
+			motorSet(RIGHT_BACK_MOTOR, -power-strafe+turn);
+			motorSet(RIGHT_FRONT_MOTOR, -power+strafe+turn);
+		}
+		else
+		{
+			stopDrive();
+		}
+		delay(20);
 	}
 
 }
