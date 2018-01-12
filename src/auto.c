@@ -33,4 +33,7 @@ void autonomous() {
   taskDelete(_lcdBacklightFlash);
   lcdSetBacklight(uart1, false);
   
+  lcdClear(uart2);
+  lcdSetBacklight(uart2, false);
+
 }

@@ -12,42 +12,6 @@
 
 #include "main.h"
 
-//utilize error.h
-void lcdBacklightFlash(void * parameters)
-{
-  while(true)
-  {
-    lcdSetBacklight(uart1, false);
-    delay(750);
-    lcdSetBacklight(uart1, true);
-    delay(750);
-  }
-}
-
-void errorCheck(void * parameters)
-{
-  bool error;
-  _lcdBacklightFlash = taskCreate(lcdBacklightFlash, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_LOWEST);
-  taskSuspend(_lcdBacklightFlash);
-  lcdSetBacklight(uart1, false);
-  while(true)
-  {
-    error = (bool)(!powerLevelBackup());
-    if(error)
-    {
-      taskResume(_lcdBacklightFlash);
-    }
-    else if(!error)
-    {
-      taskSuspend(_lcdBacklightFlash);
-      lcdSetBacklight(uart1, false);
-    }
-  }
-}
-
-
-
-
 /*
  * Runs pre-initialization code. This function will be started in kernel mode one time while the
  * VEX Cortex is starting up. As the scheduler is still paused, most API functions will fail.
