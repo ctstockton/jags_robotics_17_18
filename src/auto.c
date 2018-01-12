@@ -37,4 +37,13 @@ void autonomous()
   lcdClear(uart2);
   lcdSetBacklight(uart2, false);
 
+  //autonomous selection
+  if(AUTONOMOUS_CHOSEN == AUTONOMOUS_SKILLS)
+    Skills();
+  else if(AUTONOMOUS_CHOSEN == AUTONOMOUS_LEFT_1)
+    AutonomousLeft1();
+  else if(AUTONOMOUS_CHOSEN == AUTONOMOUS_RIGHT_1)
+    AutonomousRight1();
+  //taskDelete(_lift);
+  //setLift(0);
 }
