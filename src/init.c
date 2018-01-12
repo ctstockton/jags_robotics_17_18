@@ -20,7 +20,9 @@
  * states (digitalWrite()) of limit switches, push buttons, and solenoids. It can also safely
  * configure a UART port (usartOpen()) but cannot set up an LCD (lcdInit()).
  */
-void initializeIO() {
+void initializeIO()
+{
+
 }
 
 /*
@@ -36,7 +38,8 @@ void initializeIO() {
  * will not start. An autonomous mode selection menu like the pre_auton() in other environments
  * can be implemented in this task if desired.
  */
-void initialize() {
+void initialize()
+{
   //set name of robot
   if(ROBOT == JAWS)
     setTeamName("JAWS");

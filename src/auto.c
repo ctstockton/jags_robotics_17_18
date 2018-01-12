@@ -26,7 +26,8 @@
  * The autonomous task may exit, unlike operatorControl() which should never exit. If it does
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
-void autonomous() {
+void autonomous()
+{
   //stop error check
   //too late to fix errors so why bug with notifications
   taskDelete(_errorCheck);
