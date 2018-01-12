@@ -4,9 +4,9 @@ void lcdBacklightFlash(void * parameters)
 {
   while(true)
   {
-    lcdSetBacklight(uart2, true);
+    lcdSetBacklight(uart2, true);//set on
     delay(250);
-    lcdSetBacklight(uart2, false);
+    lcdSetBacklight(uart2, false);//set off
     delay(250);
   }
 }
@@ -19,7 +19,7 @@ void errorCheck(void * parameters)
   lcdSetBacklight(uart2, false);
   while(true)
   {
-    error = (bool)(powerLevelMain()/1000 < 7.1);
+    error = (bool)((double)powerLevelMain()/1000 < 7.100);
     if(error)
     {
       taskResume(_lcdBacklightFlash);
@@ -27,8 +27,8 @@ void errorCheck(void * parameters)
     else if(!error)
     {
       taskSuspend(_lcdBacklightFlash);
-      lcdSetBacklight(uart2, false);
+      lcdSetBacklight(uart2, false);//set off incase it was on
     }
-    wait(20);
+    delay(20);
   }
 }
