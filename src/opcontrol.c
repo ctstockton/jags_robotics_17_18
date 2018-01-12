@@ -33,11 +33,17 @@ void operatorControl() {
 	int power;
 	int strafe;
 	int turn;
+
+	int liftPower;
+	printf("operator contol called\n");
 	while (true) {
+		/*
+		//Drive control
+		*/
 		//getting joysticks
-		power = joystickGetAnalog(1, 3); // vertical axis on right joystick
-		strafe  = joystickGetAnalog(1, 4); // horizontal axis on right joystick
-		turn = joystickGetAnalog(1, 1);
+		power = joystickGetAnalog(1, 3); // vertical axis on left joystick
+		strafe  = joystickGetAnalog(1, 4); // horizontal axis on left joystick
+		turn = joystickGetAnalog(1, 1); // horizontal axis on right joystick
 
 		if(abs(power)>15 || abs(strafe)>15 || abs(turn)>15)//to prevent creeping
 		{
@@ -50,6 +56,15 @@ void operatorControl() {
 		{
 			stopDrive();
 		}
+
+		/*
+		//Lift control
+		*/
+		liftPower = joystickGetDigital(1, 8, JOY_UP) - joystickGetDigital(1, 8, JOY_DOWN);
+
+		motorSet(LEFT_LIFT_MOTOR, (liftPower*127));
+		motorSet(RIGHT_LIFT_MOTOR, (-liftPower*127));
+
 		delay(20);
 	}
 
