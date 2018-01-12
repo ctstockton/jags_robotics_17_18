@@ -5,9 +5,10 @@
 
 //beginner list
 void setDriveForTime(int left, int right, int time);
-
+void setStrafeForTime(int front, int back, int time);
 //normal list
 void setDrive(int left, int right);
+void setStrafe(int front, int back);
 void stopDrive();
 
 

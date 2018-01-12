@@ -30,12 +30,17 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
+
+	//finished with lcd menu
+	taskDelete(_LCDRunTime);
+
+	//init vars
 	int power;
 	int strafe;
 	int turn;
 
 	int liftPower;
-	printf("operator contol called\n");
+
 	while (true) {
 		/*
 		//Drive control
@@ -45,7 +50,7 @@ void operatorControl() {
 		strafe  = joystickGetAnalog(1, 4); // horizontal axis on left joystick
 		turn = joystickGetAnalog(1, 1); // horizontal axis on right joystick
 
-		if(abs(power)>15 || abs(strafe)>15 || abs(turn)>15)//to prevent creeping
+		if(abs(power)>15 || abs(strafe)>15 || abs(turn)>20)//to prevent creeping
 		{
 			motorSet(LEFT_FRONT_MOTOR, power+strafe+turn);
 			motorSet(LEFT_BACK_MOTOR, power-strafe+turn);
@@ -60,7 +65,7 @@ void operatorControl() {
 		/*
 		//Lift control
 		*/
-		liftPower = joystickGetDigital(1, 8, JOY_UP) - joystickGetDigital(1, 8, JOY_DOWN);
+		liftPower = joystickGetAnalog(1, 2);//vertical axis on right joystick
 
 		motorSet(LEFT_LIFT_MOTOR, (liftPower*127));
 		motorSet(RIGHT_LIFT_MOTOR, (-liftPower*127));

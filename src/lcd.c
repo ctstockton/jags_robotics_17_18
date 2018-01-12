@@ -53,7 +53,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       else if(buttonPressed == LCD_BTN_RIGHT)
         currentScreen = MENU_AUTO_MAIN;
       break;
-      case MENU_BATTERIES ://///////////////////////////////////////////////////
+      case MENU_BATTERIES1 ://///////////////////////////////////////////////////
       while(!lcdReadButtons(uart2))
       {
         lcdSetText(uart2, 1, "Batteries: Back>");
@@ -62,9 +62,24 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       }
       buttonPressed = LCDButtWaitReturn();
       if(buttonPressed == LCD_BTN_LEFT)
-        currentScreen = MENU_BATTERIES;
+        currentScreen = MENU_BATTERIES1;
       else if(buttonPressed == LCD_BTN_CENTER)
-        currentScreen = MENU_BATTERIES;
+        currentScreen = MENU_BATTERIES2;
+      else if(buttonPressed == LCD_BTN_RIGHT)
+        currentScreen = MENU_MAIN;
+      break;
+      case MENU_BATTERIES2 :
+      while(!lcdReadButtons(uart2))
+      {
+        lcdSetText(uart2, 1, "Sensors:   Back>");
+        lcdPrint(uart2, 2, "L Potent: %4d", analogRead(LEFT_LIFT_POTENTIOMETER));
+        wait(20);
+      }
+      buttonPressed = LCDButtWaitReturn();
+      if(buttonPressed == LCD_BTN_LEFT)
+        currentScreen = MENU_BATTERIES1;
+      else if(buttonPressed == LCD_BTN_CENTER)
+        currentScreen = MENU_BATTERIES2;
       else if(buttonPressed == LCD_BTN_RIGHT)
         currentScreen = MENU_MAIN;
       break;
@@ -109,7 +124,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       lcdSetText(uart2, 2, "<Battery Autonomous>");
       buttonPressed = LCDButtWaitReturn();
       if(buttonPressed == LCD_BTN_LEFT)
-        currentScreen = MENU_BATTERIES;
+        currentScreen = MENU_BATTERIES1;
       else if(buttonPressed == LCD_BTN_CENTER)
         currentScreen = MENU_MAIN;
       else if(buttonPressed == LCD_BTN_RIGHT)

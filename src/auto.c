@@ -32,10 +32,14 @@ void autonomous()
   //too late to fix errors so why bug with notifications
   taskDelete(_errorCheck);
   taskDelete(_lcdBacklightFlash);
-  lcdSetBacklight(uart1, false);
-  
-  lcdClear(uart2);
+  //lcdClear(uart2);
+  /*
+  \\debugging
+  */
   lcdSetBacklight(uart2, false);
+  lcdSetBacklight(uart2, true);
+  LIFT_TARGET = 1600;
+  _lift = taskCreate(liftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 
   //autonomous selection
   if(AUTONOMOUS_CHOSEN == AUTONOMOUS_SKILLS)

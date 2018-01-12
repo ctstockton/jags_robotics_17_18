@@ -98,8 +98,8 @@ extern "C" {
 #define INTAKE_SHIFT_MOTOR 10
 
 //Reserve names of encoders for initialization.
-Gyro gyro;
-Encoder leftDriveEncoder, rightDriveEncoder;
+//Gyro gyro;
+Encoder LFDriveEncoder, RBDriveEncoder;
 #endif //end of JAWS port setup
 
 

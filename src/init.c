@@ -49,15 +49,20 @@ void initialize()
   //Initialize LCD
   if(ROBOT == JAWS)
   {
-    lcdInit(uart1);
-    lcdClear(uart1);
+    lcdInit(uart2);
+    lcdClear(uart2);
+
+    //Initialize sensors
+    //gyro = gyroInit(GYROSCOPE, 0);
+    LFDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, false);//change reversed accourdingly
+    RBDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, true);//change reversed accourdingly
+
+    //start LCD menu and error check
+    _LCDRunTime = taskCreate(LCDMenu, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    _errorCheck = taskCreate(errorCheck, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
   }
-
-  //Initialize sensors
-  gyro = gyroInit(GYROSCOPE, 0);
-  leftDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, false);//change reversed accourdingly
-  rightDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, true);//change reversed accourdingly
-
-  //start error check
-  _errorCheck = taskCreate(errorCheck, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+  else if(ROBOT == JAGS)
+  {
+    //nothing so far
+  }
 }
