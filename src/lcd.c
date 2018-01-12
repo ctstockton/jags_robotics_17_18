@@ -33,8 +33,10 @@ void LCDMenu(void * parameters)//called as a thread in init.c
 
   //declare local var
   int currentScreen = 0;
-  int autonomousPick;
   int buttonPressed = 0;
+
+  //declare no autonomous first
+  AUTONOMOUS_CHOSEN = AUTONOMOUS_NONE;
 
   while(true)
   {
@@ -45,7 +47,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       lcdSetText(uart2, 2, "<Battery   Auto>");
       buttonPressed = LCDButtWaitReturn();
       if(buttonPressed == LCD_BTN_LEFT)
-        currentScreen = MENU_BATTERIES;
+        currentScreen = MENU_BATTERIES1;
       else if(buttonPressed == LCD_BTN_CENTER)
         currentScreen = MENU_MAIN;
       else if(buttonPressed == LCD_BTN_RIGHT)
@@ -71,11 +73,36 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       lcdSetText(uart2, 2, "Left Skill Right");
       buttonPressed = LCDButtWaitReturn();
       if(buttonPressed == LCD_BTN_LEFT)
-        currentScreen = MENU_MAIN;
+      {
+        currentScreen = MENU_AUTO_CHOSEN;
+        AUTONOMOUS_CHOSEN = AUTONOMOUS_LEFT_1;
+      }
       else if(buttonPressed == LCD_BTN_CENTER)
-        currentScreen = MENU_MAIN;
+      {
+        currentScreen = MENU_AUTO_CHOSEN;
+        AUTONOMOUS_CHOSEN = AUTONOMOUS_SKILLS;
+      }
       else if(buttonPressed == LCD_BTN_RIGHT)
+      {
+        currentScreen = MENU_AUTO_CHOSEN;
+        AUTONOMOUS_CHOSEN = AUTONOMOUS_RIGHT_1;
+      }
+      break;
+      case MENU_AUTO_CHOSEN :///////////////////////////////////////////////////
+      lcdSetText(uart2, 1, "   Autonomous   ");
+      if(AUTONOMOUS_CHOSEN == AUTONOMOUS_LEFT_1)
+        lcdSetText(uart2, 2, "Left1           ");
+      else if(AUTONOMOUS_CHOSEN == AUTONOMOUS_SKILLS)
+        lcdSetText(uart2, 2, "Skills          ");
+      else if (AUTONOMOUS_CHOSEN == AUTONOMOUS_RIGHT_1)
+        lcdSetText(uart2, 2, "Right1          ");
+      buttonPressed = LCDButtWaitReturn();
+      if(buttonPressed)
+      {
         currentScreen = MENU_MAIN;
+        AUTONOMOUS_CHOSEN = AUTONOMOUS_NONE;//no autonomous
+      }
+
       break;
       default ://///////////////////////////////////////////////////////////////
       lcdSetText(uart2, 1, "           Main Menu");
