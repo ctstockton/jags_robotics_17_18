@@ -22,5 +22,30 @@ void stopLift();
 
 //lift task function
 void liftTask(void * parameters);
+//////////////////////////////////////////////////
+//declare task name
+TaskHandle _intakeShift;
+
+//declare shift positions
+#define SHIFT_OUT
+#define SHIFT_IN
+#define SHIFT_UP
+
+int SHIFT_TARGET;
+
+//beginner list
+void setShiftForTime(int power, int time);
+
+//normal list
+void setShift(int power);
+
+//shift task function
+void intakeShiftTask(void * parameters);
+
+//intake
+void intake(int power);
+
+//mobile goal lift
+void MGlift(int power);
 
 #endif //_LIFT_H_ end declaration if
