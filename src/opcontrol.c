@@ -29,10 +29,12 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
-void operatorControl() {
-
+void operatorControl()
+{
 	//finished with lcd menu
-	taskDelete(_LCDRunTime);
+	//taskDelete(_LCDRunTime);
+	//taskDelete(_lift);
+	//taskDelete(_intakeShift);
 
 	//init vars
 	int power;
@@ -65,12 +67,42 @@ void operatorControl() {
 		/*
 		//Lift control
 		*/
-		liftPower = joystickGetAnalog(1, 2);//vertical axis on right joystick
 
-		motorSet(LEFT_LIFT_MOTOR, (liftPower*127));
-		motorSet(RIGHT_LIFT_MOTOR, (-liftPower*127));
+		if(joystickGetDigital(1, 8, JOY_UP))
+			setLift(127);//vertical axis on right joystick
+		else if(joystickGetDigital(1, 8, JOY_DOWN))
+			setLift(-127);
+		else
+			setLift(0);
 
+		/*
+		//Intake
+		*/
+		if(joystickGetDigital(1, 7, JOY_UP))
+			intake(127);
+		else if(joystickGetDigital(1, 7, JOY_DOWN))
+			intake(-127);
+		else
+			intake(0);
+		/*
+		//Intake shift
+		*/
+		if(joystickGetDigital(1, 5, JOY_UP))
+			setShift(127);
+		else if(joystickGetDigital(1, 5, JOY_DOWN))
+			setShift(-127);
+		else
+			setShift(0);
+
+			/*
+			//MG lift
+			*/
+		if(joystickGetDigital(1, 6, JOY_UP))
+			MGlift(-127);
+		else if(joystickGetDigital(1, 6, JOY_DOWN))
+			MGlift(127);
+		else
+			MGlift(0);
 		delay(20);
 	}
-
 }
