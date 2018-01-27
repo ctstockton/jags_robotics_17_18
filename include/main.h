@@ -77,7 +77,7 @@ extern "C" {
 //Analog ports
 #define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
 #define RIGHT_LIFT_POTENTIOMETER 2 //range of 0 - 4095
-#define GYROSCOPE 3
+#define SHIFT_POTENTIOMETER 3
 
 //Digital ports
 #define LEFT_DRIVE_QUAD_TOP 1
@@ -92,10 +92,10 @@ extern "C" {
 #define RIGHT_BACK_MOTOR 2
 #define LEFT_LIFT_MOTOR 4
 #define RIGHT_LIFT_MOTOR 9
-#define INTAKE_MOTOR 1
-#define LEFT_MOBILE_MOTOR 6
-#define RIGHT_MOBILE_MOTOR 5
-#define INTAKE_SHIFT_MOTOR 10
+#define INTAKE_MOTOR 5
+#define LEFT_MOBILE_MOTOR 1
+#define RIGHT_MOBILE_MOTOR 10
+#define INTAKE_SHIFT_MOTOR 6
 
 //Reserve names of encoders for initialization.
 //Gyro gyro;

@@ -53,7 +53,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       else if(buttonPressed == LCD_BTN_RIGHT)
         currentScreen = MENU_AUTO_MAIN;
       break;
-      case MENU_BATTERIES1 ://///////////////////////////////////////////////////
+      case MENU_BATTERIES1 :////////////////////////////////////////////////////
       while(!lcdReadButtons(uart2))
       {
         lcdSetText(uart2, 1, "Batteries: Back>");
@@ -117,7 +117,6 @@ void LCDMenu(void * parameters)//called as a thread in init.c
         currentScreen = MENU_MAIN;
         AUTONOMOUS_CHOSEN = AUTONOMOUS_NONE;//no autonomous
       }
-
       break;
       default ://///////////////////////////////////////////////////////////////
       lcdSetText(uart2, 1, "           Main Menu");
