@@ -24,6 +24,11 @@ void setLift(int power)
   motorSet(RIGHT_LIFT_MOTOR, -power);
 }
 
+void setShift(int power)
+{
+  motorSet(INTAKE_SHIFT_MOTOR, power);
+}
+
 void liftTask(void * parameters)
 {
   float np = 0.40;
@@ -74,4 +79,15 @@ void intakeShiftTask(void * parameters)
     lcdPrint(uart2, 2, "%3d %3.1f %2.1f",error,errorSum,derivative);//for debug
     delay(20);
   }
+}
+
+void intake(int power)
+{
+  motorSet(INTAKE_MOTOR, power);
+}
+
+void MGlift(int power)
+{
+  motorSet(LEFT_MOBILE_MOTOR, -power);
+  motorSet(RIGHT_MOBILE_MOTOR, power);
 }
