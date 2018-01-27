@@ -7,6 +7,8 @@
 #define AUTONOMOUS_RIGHT_1 2
 
 int AUTONOMOUS_CHOSEN;
+
+int AUTONOMOUS_ERROR;
 //List of all autonomous functions are/or routines
 void Skills();
 void AutonomousLeft1();

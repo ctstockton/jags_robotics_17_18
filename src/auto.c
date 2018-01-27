@@ -33,21 +33,27 @@ void autonomous()
   taskDelete(_errorCheck);
   taskDelete(_lcdBacklightFlash);
   //lcdClear(uart2);
+  //_autonomousCheck = taskCreate(autoCheck, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
   /*
   \\debugging
   */
-  lcdSetBacklight(uart2, false);
+  Skills();
+  /*lcdSetBacklight(uart2, false);
   lcdSetBacklight(uart2, true);
   LIFT_TARGET = 1600;
   _lift = taskCreate(liftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
-
+  */
+  //SHIFT_TARGET = 1800;
+  //_intakeShift = taskCreate(intakeShiftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
   //autonomous selection
+  /*
   if(AUTONOMOUS_CHOSEN == AUTONOMOUS_SKILLS)
     Skills();
   else if(AUTONOMOUS_CHOSEN == AUTONOMOUS_LEFT_1)
     AutonomousLeft1();
   else if(AUTONOMOUS_CHOSEN == AUTONOMOUS_RIGHT_1)
     AutonomousRight1();
+    */
   //taskDelete(_lift);
   //setLift(0);
 }

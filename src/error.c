@@ -32,3 +32,16 @@ void errorCheck(void * parameters)
     delay(20);
   }
 }
+
+void autoCheck(void * parameters)
+{
+  while(true)
+  {
+    if(AUTONOMOUS_ERROR)
+    {
+      //Delete auton tasks
+      taskDelete(_lift);
+    }
+    delay(20);
+  }
+}

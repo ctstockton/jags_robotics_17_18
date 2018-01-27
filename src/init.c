@@ -40,6 +40,9 @@ void initializeIO()
  */
 void initialize()
 {
+  //auto setup
+  AUTONOMOUS_ERROR = false;
+
   //set name of robot
   if(ROBOT == JAWS)
     setTeamName("JAWS");
