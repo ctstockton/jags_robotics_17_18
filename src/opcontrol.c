@@ -37,9 +37,7 @@ void operatorControl()
 	//taskDelete(_intakeShift);
 
 	//init vars
-	int power;
-	int strafe;
-	int turn;
+	int leftPower, rightPower;
 
 	int liftPower;
 
@@ -48,9 +46,8 @@ void operatorControl()
 		//Drive control
 		*/
 		//getting joysticks
-		power = joystickGetAnalog(1, 3); // vertical axis on left joystick
-		strafe  = joystickGetAnalog(1, 4); // horizontal axis on left joystick
-		turn = joystickGetAnalog(1, 1); // horizontal axis on right joystick
+		leftPower = joystickGetAnalog(1, 3); // vertical axis on left joystick
+		rightPower  = joystickGetAnalog(1, 2); // horizontal axis on left joystick
 
 		if(abs(leftPower)>15 || abs(rightPower)>15)//to prevent creeping
 		{
@@ -78,21 +75,25 @@ void operatorControl()
 		/*
 		//Intake
 		*/
+		/*
 		if(joystickGetDigital(1, 7, JOY_UP))
 			intake(127);
 		else if(joystickGetDigital(1, 7, JOY_DOWN))
 			intake(-127);
 		else
 			intake(0);
+			*/
 		/*
 		//Intake shift
 		*/
+		/*
 		if(joystickGetDigital(1, 5, JOY_UP))
 			setShift(127);
 		else if(joystickGetDigital(1, 5, JOY_DOWN))
 			setShift(-127);
 		else
 			setShift(0);
+			*/
 
 			/*
 			//MG lift
@@ -103,6 +104,7 @@ void operatorControl()
 			MGlift(127);
 		else
 			MGlift(0);
+
 		delay(20);
 	}
 }
