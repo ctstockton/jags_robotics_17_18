@@ -75,27 +75,28 @@ extern "C" {
 #if(ROBOT == JAWS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
 //Analog ports
-#define LEFT_LIFT_POTENTIOMETER 1 //range of 0 - 4095
-#define RIGHT_LIFT_POTENTIOMETER 2 //range of 0 - 4095
-#define SHIFT_POTENTIOMETER 3
+#define LIFT_POTENTIOMETER 1 //range of 0 - 4095
+#define MG_POTENTIOMETER 6 //range of 0 - 4095
+#define SHIFT_POTENTIOMETER
 
 //Digital ports
-#define LEFT_DRIVE_QUAD_TOP 1
-#define LEFT_DRIVE_QUAD_BOT 2
-#define RIGHT_DRIVE_QUAD_TOP 3
-#define RIGHT_DRIVE_QUAD_BOT 4
+#define ULTRA_SON_TOP 2
+#define ULTRA_SON_BOT 3
+#define LEFT_DRIVE_QUAD_TOP 4
+#define LEFT_DRIVE_QUAD_BOT 5
+#define RIGHT_DRIVE_QUAD_TOP 7
+#define RIGHT_DRIVE_QUAD_BOT 8
 
 //Define motor port
-#define LEFT_FRONT_MOTOR 7
-#define LEFT_BACK_MOTOR 3
-#define RIGHT_FRONT_MOTOR 8
-#define RIGHT_BACK_MOTOR 2
-#define LEFT_LIFT_MOTOR 4
+#define LEFT_FRONT_MOTOR 3
+#define LEFT_BACK_MOTOR 4
+#define RIGHT_FRONT_MOTOR 7
+#define RIGHT_BACK_MOTOR 8
+#define LEFT_LIFT_MOTOR 2
 #define RIGHT_LIFT_MOTOR 9
 #define INTAKE_MOTOR 5
-#define LEFT_MOBILE_MOTOR 1
-#define RIGHT_MOBILE_MOTOR 10
 #define INTAKE_SHIFT_MOTOR 6
+#define MOBILE_GOAL_MOTOR 10
 
 //Reserve names of encoders for initialization.
 //Gyro gyro;
@@ -142,7 +143,7 @@ Encoder leftDriveEncoder, rightDriveEncoder;
 //Presets for lift, intake shift, and mobile goal for JAWS
 #if(ROBOT == JAWS)
 //Lift presets
-#define BOTTOM_READY
+#define LIFT_READY_POS
 #define BOTTOM_GRAB
 #define LOAD_DOCK_READY
 #define LOAD_DOCK_GRAB

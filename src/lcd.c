@@ -72,7 +72,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       while(!lcdReadButtons(uart2))
       {
         lcdSetText(uart2, 1, "Sensors:   Back>");
-        lcdPrint(uart2, 2, "L Potent: %4d", analogRead(LEFT_LIFT_POTENTIOMETER));
+        lcdPrint(uart2, 2, "L Potent: %4d", analogRead(LIFT_POTENTIOMETER));
         wait(20);
       }
       buttonPressed = LCDButtWaitReturn();

@@ -52,12 +52,12 @@ void operatorControl()
 		strafe  = joystickGetAnalog(1, 4); // horizontal axis on left joystick
 		turn = joystickGetAnalog(1, 1); // horizontal axis on right joystick
 
-		if(abs(power)>15 || abs(strafe)>15 || abs(turn)>20)//to prevent creeping
+		if(abs(leftPower)>15 || abs(rightPower)>15)//to prevent creeping
 		{
-			motorSet(LEFT_FRONT_MOTOR, power+strafe+turn);
-			motorSet(LEFT_BACK_MOTOR, power-strafe+turn);
-			motorSet(RIGHT_BACK_MOTOR, -power-strafe+turn);
-			motorSet(RIGHT_FRONT_MOTOR, -power+strafe+turn);
+			motorSet(LEFT_FRONT_MOTOR, leftPower);
+			motorSet(LEFT_BACK_MOTOR, leftPower);
+			motorSet(RIGHT_BACK_MOTOR, -rightPower);
+			motorSet(RIGHT_FRONT_MOTOR, -rightPower);
 		}
 		else
 		{

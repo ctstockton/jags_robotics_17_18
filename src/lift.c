@@ -42,7 +42,7 @@ void liftTask(void * parameters)
 
   while(true)
   {
-    error = LIFT_TARGET - analogRead(LEFT_LIFT_POTENTIOMETER);
+    error = LIFT_TARGET - analogRead(LIFT_POTENTIOMETER);
     derivative = abs(error - previousError)/0.02;//ticks per sec
     motorPower = (error*np+errorSum*ni+derivative*nd);
     setLift(motorPower);
@@ -88,6 +88,5 @@ void intake(int power)
 
 void MGlift(int power)
 {
-  motorSet(LEFT_MOBILE_MOTOR, -power);
-  motorSet(RIGHT_MOBILE_MOTOR, power);
+  motorSet(MOBILE_GOAL_MOTOR, power);
 }
