@@ -102,8 +102,8 @@ extern "C" {
 //Gyro gyro;
 Encoder LFDriveEncoder, RBDriveEncoder;
 #endif //end of JAWS port setup
-
-
+/*--------------------------------------------------------------------------------------------------*/
+/*
 //This is the sensor and motor port setup for JAGS
 #if(ROBOT == JAGS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
@@ -137,8 +137,8 @@ Encoder LFDriveEncoder, RBDriveEncoder;
 //Reserve names of encoders for initialization.
 Gyro gyro;
 Encoder leftDriveEncoder, rightDriveEncoder;
-#endif
-
+#endif*/
+/*--------------------------------------------------------------------------------------------------*/
 
 //Presets for lift, intake shift, and mobile goal for JAWS
 #if(ROBOT == JAWS)
@@ -159,11 +159,13 @@ Encoder leftDriveEncoder, rightDriveEncoder;
 #define MG_OUTTAKE
 
 #endif
-
+/*--------------------------------------------------------------------------------------------------*/
+/*
 //Presets for lift, intake shift, and mobile goal for JAGS
 #if(ROBOT == JAGS)
 
-#endif
+#endif*/
+/*--------------------------------------------------------------------------------------------------*/
 
 // Prototypes for initialization, operator control and autonomous
 
