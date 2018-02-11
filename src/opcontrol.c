@@ -29,6 +29,98 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
+#if(ROBOT == JAWS)
+
+int SUBTASK = 0;
+#define SUB_TASK_PRELOAD_STACK 1
+
+
+void subTasks(void * parameters)
+{
+	while(true)
+	{
+		switch(SUBTASK)
+		case 1 :
+		
+		SUBTASK = 0;
+		break;
+		delay(20);
+	}
+}
+
+void operatorControl()
+{
+	//taskDelete(_lift);
+
+	//init vars
+	int leftPower, rightPower;
+
+	TaskHandle _subTasks = taskCreate(subTasks, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+	taskSuspend(_subTasks);
+
+	while (true)
+	{
+		/*
+		//Drive control
+		*/
+		rightPower = joystickGetAnalog(1, 3); // vertical axis on left joystick
+		leftPower  = joystickGetAnalog(1, 2); // horizontal axis on left joystick
+		if(abs(leftPower)>15 || abs(rightPower)>15)//to prevent creeping
+		{
+			motorSet(LEFT_FRONT_MOTOR, -leftPower);
+			motorSet(LEFT_BACK_MOTOR, -leftPower);
+			motorSet(RIGHT_BACK_MOTOR, rightPower);
+			motorSet(RIGHT_FRONT_MOTOR, rightPower);
+		}
+		else
+		{
+			stopDrive();
+		}
+
+		/*
+		//Lift control
+		*/
+		if(joystickGetDigital(1, 8, JOY_UP))
+			setLift(127);//vertical axis on right joystick
+		else if(joystickGetDigital(1, 8, JOY_DOWN))
+			setLift(-127);
+		else
+			setLift(0);
+
+		/*
+		//Intake
+		*/
+		if(joystickGetDigital(1, 5, JOY_UP))
+			intake(127);
+		else if(joystickGetDigital(1, 5, JOY_DOWN))
+			intake(-127);
+		else
+			intake(15);
+
+		/*
+		//MG lift
+		*/
+		if(joystickGetDigital(1, 6, JOY_UP))
+			MGlift(-127);
+		else if(joystickGetDigital(1, 6, JOY_DOWN))
+			MGlift(127);
+		else
+			MGlift(0);
+
+		/*
+		//SubTasks
+		*/
+		if(joystickGetDigital(1, 7, JOY_LEFT))
+		{
+			SUBTASK = SUB_TASK_PRELOAD_STACK;
+		}
+
+		delay(20);
+	}
+}
+#endif
+/*--------------------------------------------------------------------------------------------------*/
+#if(ROBOT == JAGS)
 void operatorControl()
 {
 	//finished with lcd menu
@@ -40,7 +132,6 @@ void operatorControl()
 	int leftPower, rightPower;
 
 	int liftPower;
-
 	while (true) {
 		/*
 		//Drive control
@@ -53,58 +144,17 @@ void operatorControl()
 		{
 			motorSet(LEFT_FRONT_MOTOR, leftPower);
 			motorSet(LEFT_BACK_MOTOR, leftPower);
+			motorSet(LEFT_MID_1_MOTOR, leftPower);
+			motorSet(LEFT_MID_2_MOTOR, leftPower);
 			motorSet(RIGHT_BACK_MOTOR, -rightPower);
 			motorSet(RIGHT_FRONT_MOTOR, -rightPower);
+			motorSet(RIGHT_MID_1_MOTOR, -rightPower);
+			motorSet(RIGHT_MID_2_MOTOR, -rightPower);
 		}
 		else
 		{
 			stopDrive();
 		}
-
-		/*
-		//Lift control
-		*/
-
-		if(joystickGetDigital(1, 8, JOY_UP))
-			setLift(127);//vertical axis on right joystick
-		else if(joystickGetDigital(1, 8, JOY_DOWN))
-			setLift(-127);
-		else
-			setLift(0);
-
-		/*
-		//Intake
-		*/
-		/*
-		if(joystickGetDigital(1, 7, JOY_UP))
-			intake(127);
-		else if(joystickGetDigital(1, 7, JOY_DOWN))
-			intake(-127);
-		else
-			intake(0);
-			*/
-		/*
-		//Intake shift
-		*/
-		/*
-		if(joystickGetDigital(1, 5, JOY_UP))
-			setShift(127);
-		else if(joystickGetDigital(1, 5, JOY_DOWN))
-			setShift(-127);
-		else
-			setShift(0);
-			*/
-
-			/*
-			//MG lift
-			*/
-		if(joystickGetDigital(1, 6, JOY_UP))
-			MGlift(-127);
-		else if(joystickGetDigital(1, 6, JOY_DOWN))
-			MGlift(127);
-		else
-			MGlift(0);
-
-		delay(20);
 	}
 }
+#endif
