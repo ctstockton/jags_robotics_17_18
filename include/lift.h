@@ -11,6 +11,7 @@ TaskHandle _lift;
 #define LIFT_TO_TOP 1850
 
 int LIFT_TARGET;
+int MG_TARGET;
 //List of all function to be declared
 
 //beginner list
@@ -47,5 +48,7 @@ void intake(int power);
 
 //mobile goal lift
 void MGlift(int power);
+
+void mgLiftTask(void * parameters);
 
 #endif //_LIFT_H_ end declaration if
