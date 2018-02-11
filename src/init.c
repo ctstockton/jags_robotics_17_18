@@ -57,8 +57,10 @@ void initialize()
 
     //Initialize sensors
     //gyro = gyroInit(GYROSCOPE, 0);
+    sonar = ultrasonicInit(ULTRA_SON_TOP, ULTRA_SON_BOT);
     LFDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, false);//change reversed accourdingly
     RBDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, true);//change reversed accourdingly
+    LiftEncoder = encoderInit(LIFT_QUAD_TOP, LIFT_QUAD_TOP, false);
 
     //start LCD menu and error check
     _LCDRunTime = taskCreate(LCDMenu, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);

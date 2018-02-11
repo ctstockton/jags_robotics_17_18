@@ -28,11 +28,6 @@
  */
 void autonomous()
 {
-  //stop error check
-  //too late to fix errors so why bug with notifications
-  taskDelete(_errorCheck);
-  taskDelete(_lcdBacklightFlash);
-  //lcdClear(uart2);
   //_autonomousCheck = taskCreate(autoCheck, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
   /*
   \\debugging
