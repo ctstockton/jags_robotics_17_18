@@ -108,6 +108,8 @@ Encoder LFDriveEncoder, RBDriveEncoder, LiftEncoder;
 #endif //end of JAWS port setup
 
 /*--------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------*/
+/*
 //This is the sensor and motor port setup for JAGS
 #if(ROBOT == JAGS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
@@ -150,6 +152,10 @@ Encoder LFDriveEncoder, RBDriveEncoder;
 #endif
 
 /*--------------------------------------------------------------------------------------------------*/
+Encoder leftDriveEncoder, rightDriveEncoder;
+#endif*/
+/*--------------------------------------------------------------------------------------------------*/
+
 //Presets for lift, intake shift, and mobile goal for JAWS
 #if(ROBOT == JAWS)
 //Lift presets
@@ -170,10 +176,12 @@ Encoder LFDriveEncoder, RBDriveEncoder;
 
 #endif
 /*--------------------------------------------------------------------------------------------------*/
+/*
 //Presets for lift, intake shift, and mobile goal for JAGS
 #if(ROBOT == JAGS)
 
-#endif
+#endif*/
+/*--------------------------------------------------------------------------------------------------*/
 
 // Prototypes for initialization, operator control and autonomous
 
