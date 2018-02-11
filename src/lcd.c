@@ -71,8 +71,8 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       case MENU_BATTERIES2 :
       while(!lcdReadButtons(uart2))
       {
-        lcdSetText(uart2, 1, "Sensors:   Back>");
-        lcdPrint(uart2, 2, "L Potent: %4d", analogRead(LIFT_POTENTIOMETER));
+        lcdPrint(uart2, 1, "UltraSon: %4d", ultrasonicGet(sonar));
+        lcdPrint(uart2, 2, "L Encoder: %3d", encoderGet(LiftEncoder));
         wait(20);
       }
       buttonPressed = LCDButtWaitReturn();
