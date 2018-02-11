@@ -106,10 +106,8 @@ extern "C" {
 Ultrasonic sonar;
 Encoder LFDriveEncoder, RBDriveEncoder, LiftEncoder;
 #endif //end of JAWS port setup
+/*--------------------------------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------------------------------*/
-/*
 //This is the sensor and motor port setup for JAGS
 #if(ROBOT == JAGS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
@@ -150,10 +148,6 @@ Gyro gyro;
 Ultrasonic sonar;
 Encoder LFDriveEncoder, RBDriveEncoder;
 #endif
-
-/*--------------------------------------------------------------------------------------------------*/
-Encoder leftDriveEncoder, rightDriveEncoder;
-#endif*/
 /*--------------------------------------------------------------------------------------------------*/
 
 //Presets for lift, intake shift, and mobile goal for JAWS
