@@ -33,6 +33,7 @@
 
 int SUBTASK = 0;
 #define SUB_TASK_PRELOAD_STACK 1
+#define SUB_TASK_GRAB 2
 
 
 void subTasks(void * parameters)
@@ -40,23 +41,42 @@ void subTasks(void * parameters)
 	while(true)
 	{
 		switch(SUBTASK)
-		case 1 :
-		
-		SUBTASK = 0;
-		break;
-		delay(20);
+		{
+			case SUB_TASK_PRELOAD_STACK :
+
+			SUBTASK = 0;
+			break;
+			case SUB_TASK_GRAB :
+			LIFT_TARGET = LIFT_TO_GRAB;
+			intake(127);
+			delay(500);
+			intake(50);
+			LIFT_TARGET = LIFT_TO_HOVER;
+			delay(500);
+			intake(0);
+			SUBTASK = 0;
+			break;
+			default :
+
+			break;
+			delay(20);
+		}
 	}
 }
 
 void operatorControl()
 {
-	//taskDelete(_lift);
-
 	//init vars
 	int leftPower, rightPower;
 
 	TaskHandle _subTasks = taskCreate(subTasks, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+	TaskHandle _mgLift = taskCreate(mgLiftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+	TaskHandle _lift = taskCreate(liftTask, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
 	taskSuspend(_subTasks);
+	taskSuspend(_lift);
+	//taskDelete(_LCDRunTime);
+	LIFT_TARGET = LIFT_TO_HOVER;
+	MG_TARGET = MG_TO_TOP;
 
 	while (true)
 	{
@@ -67,10 +87,10 @@ void operatorControl()
 		leftPower  = joystickGetAnalog(1, 2); // horizontal axis on left joystick
 		if(abs(leftPower)>15 || abs(rightPower)>15)//to prevent creeping
 		{
-			motorSet(LEFT_FRONT_MOTOR, -leftPower);
-			motorSet(LEFT_BACK_MOTOR, -leftPower);
-			motorSet(RIGHT_BACK_MOTOR, rightPower);
-			motorSet(RIGHT_FRONT_MOTOR, rightPower);
+			motorSet(LEFT_FRONT_MOTOR, rightPower);
+			motorSet(LEFT_BACK_MOTOR, rightPower);
+			motorSet(RIGHT_BACK_MOTOR, -leftPower);
+			motorSet(RIGHT_FRONT_MOTOR, -leftPower);
 		}
 		else
 		{
@@ -80,12 +100,24 @@ void operatorControl()
 		/*
 		//Lift control
 		*/
-		if(joystickGetDigital(1, 8, JOY_UP))
-			setLift(127);//vertical axis on right joystick
-		else if(joystickGetDigital(1, 8, JOY_DOWN))
-			setLift(-127);
+		if(joystickGetDigital(1, 8, JOY_DOWN))
+		{
+			//LIFT_TARGET = LIFT_TO_STASH;
+			setLift(63);
+		}
+		else if(joystickGetDigital(1, 8, JOY_RIGHT))
+		{
+			//LIFT_TARGET = LIFT_TO_HOVER;
+		}
+		else if(joystickGetDigital(1, 8, JOY_UP))
+		{
+			//LIFT_TARGET = LIFT_TO_GRAB;
+			setLift(-63);
+		}
 		else
+		{
 			setLift(0);
+		}
 
 		/*
 		//Intake
@@ -101,11 +133,13 @@ void operatorControl()
 		//MG lift
 		*/
 		if(joystickGetDigital(1, 6, JOY_UP))
-			MGlift(-127);
+			{
+				MG_TARGET = MG_TO_TOP;
+			}
 		else if(joystickGetDigital(1, 6, JOY_DOWN))
-			MGlift(127);
-		else
-			MGlift(0);
+			{
+				MG_TARGET = MG_TO_BOTTOM;
+			}
 
 		/*
 		//SubTasks
@@ -127,12 +161,11 @@ void operatorControl()
 	//taskDelete(_LCDRunTime);
 	//taskDelete(_lift);
 	//taskDelete(_intakeShift);
-
+	double driveMultiplier = 1;
 	//init vars
 	int leftPower, rightPower;
-
-	int liftPower;
-	while (true) {
+	while (true)
+	{
 		/*
 		//Drive control
 		*/
@@ -142,19 +175,49 @@ void operatorControl()
 
 		if(abs(leftPower)>15 || abs(rightPower)>15)//to prevent creeping
 		{
-			motorSet(LEFT_FRONT_MOTOR, leftPower);
-			motorSet(LEFT_BACK_MOTOR, leftPower);
-			motorSet(LEFT_MID_1_MOTOR, leftPower);
-			motorSet(LEFT_MID_2_MOTOR, leftPower);
-			motorSet(RIGHT_BACK_MOTOR, -rightPower);
-			motorSet(RIGHT_FRONT_MOTOR, -rightPower);
-			motorSet(RIGHT_MID_1_MOTOR, -rightPower);
-			motorSet(RIGHT_MID_2_MOTOR, -rightPower);
+			motorSet(LEFT_FRONT_MOTOR, -leftPower*driveMultiplier);
+			motorSet(LEFT_BACK_MOTOR, -leftPower*driveMultiplier);
+			motorSet(LEFT_MID_1_MOTOR, -leftPower*driveMultiplier);
+			motorSet(LEFT_MID_2_MOTOR, -leftPower*driveMultiplier);
+			motorSet(RIGHT_BACK_MOTOR, -rightPower*driveMultiplier);
+			motorSet(RIGHT_FRONT_MOTOR, rightPower*driveMultiplier);
+			motorSet(RIGHT_MID_1_MOTOR, rightPower*driveMultiplier);
+			motorSet(RIGHT_MID_2_MOTOR, rightPower*driveMultiplier);
 		}
 		else
 		{
 			stopDrive();
 		}
+		/*
+		//Drive Throttle
+		*/
+
+		if(joystickGetDigital(1, 8, JOY_DOWN) == true)
+			driveMultiplier = 1;
+		else if(joystickGetDigital(1, 8, JOY_UP) == true)
+			driveMultiplier = .75;
+
+		/*
+		//Mobile Goal
+		*/
+		if(joystickGetDigital(1, 6, JOY_UP))
+			setMGLift(127);
+		else if(joystickGetDigital(1, 6, JOY_DOWN))
+			setMGLift(-127);
+		else
+			setMGLift(0);
+
+		/*
+		//Brace
+		*/
+		if(joystickGetDigital(1, 5, JOY_UP))
+			setTip(40);
+		else if(joystickGetDigital(1, 5, JOY_DOWN))
+			setTip(-40);
+		else
+			setTip(0);
+
+		delay(20);
 	}
 }
 #endif

@@ -24,16 +24,11 @@
     motorSet(RIGHT_LIFT_MOTOR, -power);
   }
 
-  void setShift(int power)
-  {
-    motorSet(INTAKE_SHIFT_MOTOR, power);
-  }
-
   void liftTask(void * parameters)
   {
-    float np = 0.40;
-    float ni = 0.017;
-    float nd = 0.27;
+    float np = 0.35;
+    float ni = 0.55;
+    float nd = 0.01;
     int error = 0;
     float derivative = 0;
     int previousError = 0;
@@ -43,14 +38,15 @@
     while(true)
     {
       error = LIFT_TARGET - analogRead(LIFT_POTENTIOMETER);
-      derivative = abs(error - previousError)/0.02;//ticks per sec
+      derivative = (error - previousError)/0.02;//ticks per sec
       motorPower = (error*np+errorSum*ni+derivative*nd);
-      setLift(motorPower);
+      setLift(-motorPower);
       previousError = error;
       errorSum += error*0.02;//0.02 is for the Riemann Sum
-
-      //lcdSetText(uart2, 1, "Err: Int: Deriv:");//for debug
-      //lcdPrint(uart2, 2, "%3d %3.1f %2.1f",error,errorSum,derivative);//for debug
+      /*
+      lcdPrint(uart2, 1, "PID vals: MP:%3d", motorPower);
+      lcdPrint(uart2, 2, "P:%.2f I:%.2f D:%.2f", np, ni, nd);
+      */
       delay(20);
     }
   }
@@ -60,7 +56,7 @@
     motorSet(INTAKE_MOTOR, power);
   }
 
-  void MGlift(int power)
+  void setMGLift(int power)
   {
     motorSet(MOBILE_GOAL_MOTOR_1, power);
     motorSet(MOBILE_GOAL_MOTOR_2, power);
@@ -68,9 +64,9 @@
 
   void mgLiftTask(void * parameters)
   {
-    float np = 0.40;
-    float ni = 0.017;
-    float nd = 0.27;
+    float np = 0.60;
+    float ni = 0.03;
+    float nd = 0.01;
     int error = 0;
     float derivative = 0;
     int previousError = 0;
@@ -82,7 +78,7 @@
       error = MG_TARGET - analogRead(MG_POTENTIOMETER);
       derivative = abs(error - previousError)/0.02;//ticks per sec
       motorPower = (error*np+errorSum*ni+derivative*nd);
-      setLift(motorPower);
+      setMGLift(motorPower);
       previousError = error;
       errorSum += error*0.02;//0.02 is for the Riemann Sum
 
@@ -94,5 +90,13 @@
 #endif
 /*--------------------------------------------------------------------------------------------------*/
 #if(ROBOT == JAGS)
+void setMGLift(int power)
+{
+  motorSet(MOBILE_MOTOR, power);
+}
 
+void setTip(int power)
+{
+  motorSet(TIP_MOTOR, power);
+}
 #endif

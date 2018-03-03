@@ -1,6 +1,8 @@
 #ifndef _AUTONOMOUS_H_
 #define _AUTONOMOUS_H_
 
+#if(ROBOT == JAWS)
+
 #define AUTONOMOUS_NONE -1
 #define AUTONOMOUS_SKILLS 0
 #define AUTONOMOUS_LEFT_1 1
@@ -13,5 +15,8 @@ int AUTONOMOUS_ERROR;
 void Skills();
 void AutonomousLeft1();
 void AutonomousRight1();
+#endif
+#if(ROBOT == JAGS)
 
+#endif
 #endif //_AUTONOMOUS_H_ end declaration if

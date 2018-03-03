@@ -68,22 +68,22 @@ extern "C" {
 /*--------------------------------------------------------------------------------------------------*/
 //Robot receiving compiled code. This should be change depending upon which robot is being programmed.
 //#define ROBOT "JAWS or JAGS"
-#define ROBOT JAWS //<<---------
+#define ROBOT JAGS //<<---------
 /*--------------------------------------------------------------------------------------------------*/
 
 //This is the sensor and motor port setup for JAWS
 #if(ROBOT == JAWS)
 //Space for defining sensor ports. (Encoders should not be plugged into nor set to digital port 10!)
 //Analog ports
-#define LIFT_POTENTIOMETER 1 //range of 0 - 4095
-#define MG_POTENTIOMETER 6 //range of 0 - 4095
+#define LIFT_POTENTIOMETER 6 //range of 0 - 4095
+#define MG_POTENTIOMETER 2 //range of 0 - 4095
 #define SHIFT_POTENTIOMETER
 
 //Digital ports
 #define ULTRA_SON_TOP 3
 #define ULTRA_SON_BOT 2
-#define LEFT_DRIVE_QUAD_TOP 4
-#define LEFT_DRIVE_QUAD_BOT 5
+#define LEFT_DRIVE_QUAD_TOP 5
+#define LEFT_DRIVE_QUAD_BOT 4
 #define RIGHT_DRIVE_QUAD_TOP 7
 #define RIGHT_DRIVE_QUAD_BOT 8
 #define LIFT_QUAD_TOP 11
@@ -118,30 +118,22 @@ Encoder LFDriveEncoder, RBDriveEncoder, LiftEncoder;
 //Digital ports
 #define ULTRA_SON_TOP 2
 #define ULTRA_SON_BOT 3
-#define LEFT_DRIVE_QUAD_TOP 4
-#define LEFT_DRIVE_QUAD_BOT 5
-#define RIGHT_DRIVE_QUAD_TOP 7
-#define RIGHT_DRIVE_QUAD_BOT 8
+#define LEFT_DRIVE_QUAD_TOP 1
+#define LEFT_DRIVE_QUAD_BOT 2
+#define RIGHT_DRIVE_QUAD_TOP 3
+#define RIGHT_DRIVE_QUAD_BOT 4
 
 //Define motor port
 #define LEFT_FRONT_MOTOR 4
-#define LEFT_BACK_MOTOR 3
-#define LEFT_MID_1_MOTOR 1
-#define LEFT_MID_2_MOTOR 2
+#define LEFT_BACK_MOTOR 1
+#define LEFT_MID_1_MOTOR 2
+#define LEFT_MID_2_MOTOR 3
 #define RIGHT_FRONT_MOTOR 7
-#define RIGHT_BACK_MOTOR 8
-#define RIGHT_MID_1_MOTOR 10
-#define RIGHT_MID_2_MOTOR 9
-#define LEFT_LIFT_MOTOR_1
-#define LEFT_LIFT_MOTOR_2
-#define RIGHT_LIFT_MOTOR_1
-#define RIGHT_LIFT_MOTOR_2
-#define LEFT_INTAKE_MOTOR
-#define RIGHT_INTAKE_MOTOR
-#define LEFT_MOBILE_MOTOR
-#define RIGHT_MOBILE_MOTOR
-#define LEFT_SHIFT_MOTOR
-#define RIGHT_SHIFT_MOTOR
+#define RIGHT_BACK_MOTOR 10
+#define RIGHT_MID_1_MOTOR 9
+#define RIGHT_MID_2_MOTOR 8
+#define TIP_MOTOR 6
+#define MOBILE_MOTOR 5
 
 //Reserve names of encoders for initialization.
 Gyro gyro;

@@ -119,10 +119,14 @@ void stopDrive()
 void setDriveForTime(int leftPower, int rightPower, int time)
 {
   //set left and right drive for some power for some time then stop
-  motorSet(LEFT_FRONT_MOTOR, leftPower);
-  motorSet(LEFT_BACK_MOTOR, leftPower);
+  motorSet(LEFT_FRONT_MOTOR, -leftPower);
+  motorSet(LEFT_BACK_MOTOR, -leftPower);
+  motorSet(LEFT_MID_1_MOTOR, -leftPower);
+  motorSet(LEFT_MID_2_MOTOR, -leftPower);
   motorSet(RIGHT_BACK_MOTOR, -rightPower);
-  motorSet(RIGHT_FRONT_MOTOR, -rightPower);
+  motorSet(RIGHT_FRONT_MOTOR, rightPower);
+  motorSet(RIGHT_MID_1_MOTOR, rightPower);
+  motorSet(RIGHT_MID_2_MOTOR, rightPower);
   delay(time);
   stopDrive();
 }

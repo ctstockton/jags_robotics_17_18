@@ -26,13 +26,14 @@
  * The autonomous task may exit, unlike operatorControl() which should never exit. If it does
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
+ #if(ROBOT == JAWS)
 void autonomous()
 {
   //_autonomousCheck = taskCreate(autoCheck, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
   /*
   \\debugging
   */
-  Skills();
+  //Skills();
   /*lcdSetBacklight(uart2, false);
   lcdSetBacklight(uart2, true);
   LIFT_TARGET = 1600;
@@ -51,4 +52,14 @@ void autonomous()
     */
   //taskDelete(_lift);
   //setLift(0);
+  taskSuspend(_lift);
 }
+#endif
+/*--------------------------------------------------------------------------------------------------*/
+#if(ROBOT == JAGS)
+void autonomous()
+{
+  setDriveForTime(127, 127, 1000);
+  setDriveForTime(63, -63, 400);
+}
+#endif

@@ -38,6 +38,7 @@ void initializeIO()
  * will not start. An autonomous mode selection menu like the pre_auton() in other environments
  * can be implemented in this task if desired.
  */
+#if(ROBOT == JAWS)
 void initialize()
 {
   //auto setup
@@ -50,8 +51,8 @@ void initialize()
     setTeamName("JAGS");
 
   //Initialize LCD
-  if(ROBOT == JAWS)
-  {
+
+
     lcdInit(uart2);
     lcdClear(uart2);
 
@@ -60,14 +61,17 @@ void initialize()
     sonar = ultrasonicInit(ULTRA_SON_TOP, ULTRA_SON_BOT);
     LFDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, false);//change reversed accourdingly
     RBDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, true);//change reversed accourdingly
-    LiftEncoder = encoderInit(LIFT_QUAD_TOP, LIFT_QUAD_TOP, false);
+    LiftEncoder = encoderInit(LIFT_QUAD_TOP, LIFT_QUAD_TOP, true);
 
     //start LCD menu and error check
-    _LCDRunTime = taskCreate(LCDMenu, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+    //_LCDRunTime = taskCreate(LCDMenu, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
     _errorCheck = taskCreate(errorCheck, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
-  }
-  else if(ROBOT == JAGS)
-  {
-    //nothing so far
-  }
 }
+#endif
+#if(ROBOT == JAGS)
+void initialize()
+{
+  LFDriveEncoder = encoderInit(LEFT_DRIVE_QUAD_TOP, LEFT_DRIVE_QUAD_BOT, false);//change reversed accourdingly
+  RBDriveEncoder = encoderInit(RIGHT_DRIVE_QUAD_TOP, RIGHT_DRIVE_QUAD_BOT, true);//change reversed accourdingly
+}
+#endif

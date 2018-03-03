@@ -5,10 +5,18 @@
 
 //declare task name
 TaskHandle _lift;
+TaskHandle _mgLift;
 
 //declare preset heights
-#define LIFT_TO_BOTTOM 927
-#define LIFT_TO_TOP 1850
+#define LIFT_TO_BOTTOM 160
+#define LIFT_TO_STASH 2480
+#define LIFT_TO_HOVER 570
+#define LIFT_TO_POST 2290
+#define LIFT_TO_GRAB 300
+
+//declare preset heights
+#define MG_TO_TOP 3350
+#define MG_TO_BOTTOM 1200
 
 int LIFT_TARGET;
 int MG_TARGET;
@@ -47,8 +55,10 @@ void intakeShiftTask(void * parameters);
 void intake(int power);
 
 //mobile goal lift
-void MGlift(int power);
+void setMGLift(int power);
 
 void mgLiftTask(void * parameters);
+
+void setTip(int power);
 
 #endif //_LIFT_H_ end declaration if

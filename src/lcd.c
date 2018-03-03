@@ -1,5 +1,6 @@
 #include "main.h" //to include API and lcd.h
 
+#if(ROBOT == JAWS)
 int LCDButtWaitReturn()
 {
   while(!lcdReadButtons(uart2))
@@ -32,7 +33,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
   lcdSetText(uart2, 2, "Starting Up.....");
 
   //declare local var
-  int currentScreen = 0;
+  int currentScreen = MENU_BATTERIES2;
   int buttonPressed = 0;
 
   //declare no autonomous first
@@ -71,8 +72,8 @@ void LCDMenu(void * parameters)//called as a thread in init.c
       case MENU_BATTERIES2 :
       while(!lcdReadButtons(uart2))
       {
-        lcdPrint(uart2, 1, "UltraSon: %4d", ultrasonicGet(sonar));
-        lcdPrint(uart2, 2, "L Encoder: %3d", encoderGet(LiftEncoder));
+        lcdPrint(uart2, 1, "Target: %4d", LIFT_TARGET);
+        lcdPrint(uart2, 2, "L Encoder: %4d", analogRead(LIFT_POTENTIOMETER));
         wait(20);
       }
       buttonPressed = LCDButtWaitReturn();
@@ -132,7 +133,7 @@ void LCDMenu(void * parameters)//called as a thread in init.c
     }
   }
 }
-
+#endif
 /*void flashLCDBacklight()//called as a thread when the robot need attention
 {
   if(!backLight)//if backlight is off, turn on
